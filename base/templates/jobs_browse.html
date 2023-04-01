@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h2>jobs browse  html </h2>
+
+<form method="POST" {% if jobs_list %}style="display: none;"{% endif %}>
+  {% csrf_token %}
+  <label for="state">Select a state:</label>
+  <select name="state" id="state">
+    {% for state in states %}
+      <option value="{{ state.state_id }}">{{ state.state_name }}</option>
+    {% endfor %}
+
+  </select>
+  <input type="submit" value="Submit">
+</form>
+
+
+
+
+
+<form method="POST" {% if not regions %}style="display: none;"{% endif %}>
+  {% csrf_token %}
+  {% if regions %}
+    <label for="region">Select a region:</label>
+    <select name="region" id="region">
+      {% for region in regions %}
+        <option value="{{ region.region_id }}">{{ region.region_name }}</option>
+      {% endfor %}
+    </select>
+    <input type="hidden" name="state_hidden" value="{{ selected_state }}">
+    <input type="submit" value="Submit">
+  {% endif %}
+</form>
+
+<h2>Items here</h2>
+<ul>
+   {% for job in jobs_list %}
+    <li>{{ job.job_title }}</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
+

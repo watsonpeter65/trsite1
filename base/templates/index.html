@@ -1,0 +1,260 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block content  %}
+<body>
+
+<div class="homepage-wrapper">
+  <div class="left-column" >
+    
+     <h3>the left really it is editorial Column </h3>
+ <!--   <ul>
+{% for item in left_list %}
+    <li>{{ item }}  {{  item.prov_unique_idx.icon_file }}   {{ item }}  </li>
+{% endfor %}
+</ul>
+ -->
+<!-- job     1<br>
+adverts 2</br>
+editor  3</br>
+courses 4</br>
+forum   5</br> -->
+     
+
+        {% for item in left_list %} 
+        <p>format 11 logo top</p>
+        <div class="cardy1" >
+                <table width="100%">
+                  <tr><td>
+                     <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.banner_file }}"style="display: block; margin: 0 auto;">
+                  </td></tr>
+                  <tr><td class="cardy1-s_name1" >{{ item.short_name }} </td></tr>
+                  <tr><td class="cardy1-l_name1" >{{ item.long_name }} </td></tr>
+                  <tr><td class="cardy1-text1" > topic_text1 {{ item.topic_text1 }} </td></tr>
+                </table>  
+                
+        </div>
+  
+
+  <hr style="width:50%">
+
+        <p>format new 12 logo bottom</p>
+
+                <table width="100%">
+                    <tr>
+                        <td class="cardy1-s_name1" >{{ item.short_name }} </td>
+                    </tr>
+                    <tr>
+                        <td class="cardy1-l_name1" >{{ item.long_name }} </td>
+                    </tr>
+                    <tr>
+                        <td class="cardy1-text1" > topic_text1 {{ item.topic_text1 }} </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.banner_file }}"style="display: block; margin: 0 auto;">
+                        </td>
+                    </tr>
+                </table>  
+
+  
+  <hr style="width:50%">
+
+        <p>new copy local format new 12 logo bottom</p>
+       
+                <table width="100%">
+                    <tr>
+                        <td class="cardy1-s_name1" >{{ item.short_name }} </td>
+                    </tr>
+                    <tr>
+                        <td class="cardy1-l_name1" >{{ item.long_name }} </td>
+                    </tr>
+                    <tr>
+                        <td class="cardy1-text1" > topic_text1 {{ item.topic_text1 }} </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.banner_file }}"style="display: block; margin: 0 auto;">
+                        </td>
+                    </tr>
+                </table>  
+
+       
+
+
+        <p>format 13 logo right starts wrong ssss here</p>
+       
+                <table width="100%">
+                    <tr>
+                        <td class="cardy1-s_name1" >{{ item.short_name }} </td>
+                        <td rowspan="2">
+                            <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.icon_file }}"style="display: block; margin: 0 auto;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="cardy1-l_name1" >{{ item.long_name }} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="cardy1-text1" > topic_text1 {{ item.topic_text1 }} </td>
+                    </tr>
+                </table>  
+       
+  <br>   
+
+
+<hr style="width:50%">
+
+        <p>format 14 logo left </p>
+        <div class="cardy1" >
+                <table width="100%">
+                <tr>
+                    <td rowspan="2">
+                        <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.icon_file }}"style="display: block; margin: 0 auto;">
+                    </td>
+                    <td class="cardy1-s_name1" >{{ item.short_name }} 
+                    </td>
+                </tr>
+                <tr>    
+                    <td class="cardy1-l_name1" >{{ item.long_name }} 
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" class="cardy1-text1" > topic_text1 {{ item.topic_text1 }} </td>
+                </tr>
+
+                </table>  
+        </div>
+  <br>
+
+
+
+
+        <p>format 14 logo bottom again </p>
+        <div class="cardy1" >
+                <table width="100%">
+                    <tr>
+                        <td class="cardy1-s_name1" >{{ item.short_name }} 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="cardy1-l_name1" >{{ item.long_name }} 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="cardy1-text1" > topic_text1 {{ item.topic_text1 }} 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.icon_file }}"style="display: block; margin: 0 auto;">
+                        </td>
+                    </tr>
+                </table>  
+        </div>
+<br><br><br>
+
+
+<p>peter   now the old formatted stuff </p>
+        
+        <div class="adcard1" style="width: 98%; ">
+            <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.icon_file }}"style="display: block; margin: 0 auto;"> 
+                      <div class="adcard-short_name1">{{ item.short_name }} type {{ item.topic_type }}</div>
+                      <div class="adcard-long_name1">{{ item.long_name }}</div>
+                      <div class="adcard-body1">{{ item.topic_text1 }}</div>
+    
+                    <div class="adcard-foot1">
+            
+                      <a href="#" class="adcard-link">To apply or for more information click here </a>
+                    </div>
+            </div>
+            <br>  
+
+
+
+        {% endfor %}  
+
+
+
+  </div><!-- end Left Column --><!-- end Left Column --><!-- end Left Column -->
+
+    
+  <div class="middle-column" >
+    <h3>the editorial right Column </h3>
+     
+        {% for item in right_list %} 
+            <div class="adcard1" style="width: 98%; ">
+                <img src="{{ MEDIA_URL }}{{ item.provider.icon_file }}" width="80%" style="display: block; margin: 0 auto;">
+                    
+                      <div class="adcard-short_name1">{{ item.short_name }}</div>
+                      <div class="adcard-long_name1">{{ item.long_name }}</div>
+                      <div class="adcard-body1">{{ item.topic_text1 }}</div>
+                    
+                    <div class="adcard-foot1">
+                      <a href="#" class="adcard-link">To apply or for more information click here </a>
+                    </div>
+            </div>
+            <br>  
+        {% endfor %}   
+
+      </div><!-- end Middle Column --><!-- end Middle Column --><!-- end Middle Column -->
+
+
+
+
+
+
+
+      <div class="right-column">
+            <h3> Urgent - Shifts Available</h3> 
+                  <ul class="scrolling-list">
+                     
+                                {% for shifts in shifts_list %} 
+                                 <!--   <div class="card text-light bg-dark mb-3" style="max-width: 98%;"> -->
+                                    <div class="adcard1" style="max-width: 98%;">
+
+                                      <div class="card-header text-light bg-dark ">
+                                         {{ shifts.shift_title }}
+                                      </div>
+                                      <div class="card-body text-dark bg-light">
+                                        <h5 class="card-title bg-light ">
+                                          <p class="fs-6"> {{ shifts.shift_desc }}</p>
+                                        </h5>
+                                        <p class="card-text">
+                                        <strong>Where:</strong> {{ shifts.shift_location }} 
+                                        <strong>When:</strong>  {{ shifts.shift_date_time }} <br>          
+                                        <strong>Employer:</strong> {{ shifts.emp_unique_idx.short_name }}<br>
+                                        <strong>Hours: </strong>{{ shifts.duration }}<br>
+                                        <strong>contact:  </strong>{{ shifts.cont_name }} <strong> Phone:  </strong>{{ shifts.cont_cell }}<br>
+                                        <strong>Required: </strong>{{ shifts.ticketsreqd }} 
+                                      </p>
+                                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                                      </div>
+                                    </div>
+                                {% endfor %}  
+                    </ul>
+        </div>  <!-- end right-column --> 
+</div>  <!-- end <div class="homepage-wrapper"> -->
+</body>
+
+
+<style>
+.homepage-wrapper {display: flex;flex-wrap: wrap;}
+.left-column   {width: 40%;margin-top: 5px;text-align: center;}
+.middle-column {width: 40%;margin-top: 5px;}
+.right-column  {width: 20%;margin-top: 5px;}
+.scrolling-list {overflow-y: scroll;height: 800px; margin-left: 0px /* or whatever height you want */}
+
+
+/* Responsive styles */
+@media (max-width: 768px) {.homepage-wrapper {flex-direction: column;}
+.left-column   {width: 100%;margin-top: 5px;}
+.middle-column {width: 100%;margin-top: 5px;}
+.right-column  {width: 100%;margin-top: 5px;}
+
+.scrolling-list {height: auto;max-height: 300px;}
+</style>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+	{% if user.is_authenticated %}
+
+		<h1> members_home.html </h1>
+	 	<br> <br>  <h1>Hello, {{ request.user.username }}</h1>
+
+
+	{% else %}	
+
+		 <br> <br>  <h1>you must login </h1>
+
+	{% endif %}
+
+
+
+{% endblock %}

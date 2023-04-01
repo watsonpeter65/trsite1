@@ -1,0 +1,56 @@
+
+
+<div class="homepage-wrapper">
+  <div class="left-column">
+    <!-- content for left column here -->
+  </div>
+  <div class="right-column">
+    <ul class="scrolling-list">
+       something<br>
+       something<br>
+       something<br>
+       something<br>
+       something<br>
+       something<br>
+
+    </ul>
+  </div>
+</div>
+
+<style>
+  .homepage-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .left-column {
+    width: 300px; /* or whatever width you want */
+  }
+  
+  .right-column {
+    flex: 1;
+    margin-top: 20px;
+  }
+  
+  .scrolling-list {
+    overflow-y: scroll;
+    height: 200px; /* or whatever height you want */
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .homepage-wrapper {
+      flex-direction: column;
+    }
+    
+    .right-column {
+      margin-top: 0;
+    }
+    
+    .scrolling-list {
+      height: auto;
+      max-height: 300px;
+    }
+  }
+</style>
+
