@@ -88,10 +88,9 @@ class shifts(models.Model):
     
 def __str__(self):  
     return self.shift_title
-    
+#   --------------------------------------   
 #   the pubish models
-
-
+#   --------------------------------------   
     
 class job(models.Model):    
     
@@ -112,6 +111,7 @@ class job(models.Model):
     end_date = models.DateField(blank=True, null=True)
     expired = models.BooleanField()
     
+    adformat = models.IntegerField()
     priority = models.IntegerField(null=True)
     used = models.CharField(max_length=20, null=True)
     
@@ -131,6 +131,7 @@ class job(models.Model):
     
 def __str__(self):  
     return self. job_title
+
 
     
 class adverts(models.Model):    
@@ -152,16 +153,47 @@ class adverts(models.Model):
     end_date = models.DateField(blank=True, null=True)
     expired = models.BooleanField()
     
+    adformat = models.IntegerField()
     priority = models.IntegerField(null=True)
     used = models.CharField(max_length=20, null=True)
     
     filled_by_us= models.CharField(max_length=20, blank=True)
     region  = models.ForeignKey(region, on_delete=models.CASCADE, related_name='adverts')
     
+def __str__(self):  
+    return self.short_name
+
+
+class courses(models.Model):    
     
+    course_unique_idx= models.BigAutoField(primary_key=True)
+    prov_unique_idx = models.ForeignKey(provider, on_delete=models.CASCADE, related_name='courses')
+    
+    short_name = models.CharField(max_length=20)
+    long_name = models.CharField(max_length=50)
+    topic_type = models.IntegerField(default=4)
+    topic_text1  = models.CharField(max_length=200, blank=True)
+    topic_text2  = models.CharField(max_length=200, blank=True)
+    topic_image= models.CharField(max_length=400, blank=True)
+    
+    internal_link = models.CharField(max_length=400, blank=True)
+    external_link = models.CharField(max_length=400, blank=True)
+    
+    start_date   = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+    expired = models.BooleanField()
+    
+    adformat = models.IntegerField()
+    priority = models.IntegerField(null=True)
+    used     = models.CharField(max_length=20, null=True)
+    
+    filled_by_us= models.CharField(max_length=20, blank=True)
+    region  = models.ForeignKey(region, on_delete=models.CASCADE, related_name='courses')
     
 def __str__(self):  
     return self.short_name
+    
+
 
     
 class editor(models.Model): 
@@ -183,6 +215,7 @@ class editor(models.Model):
     end_date = models.DateField(blank=True, null=True)
     expired = models.BooleanField()
     
+    adformat = models.IntegerField()
     priority = models.IntegerField(null=True)
     used = models.CharField(max_length=20, null=True)
     
@@ -196,37 +229,8 @@ class editor(models.Model):
     
 def __str__(self):  
     return self.short_name
-
     
     
-class courses(models.Model):    
-    
-    course_unique_idx= models.BigAutoField(primary_key=True)
-    prov_unique_idx = models.ForeignKey(provider, on_delete=models.CASCADE, related_name='courses')
-    
-    short_name = models.CharField(max_length=20)
-    long_name = models.CharField(max_length=50)
-    topic_type = models.IntegerField(default=4)
-    topic_text1  = models.CharField(max_length=200, blank=True)
-    topic_text2  = models.CharField(max_length=200, blank=True)
-    topic_image= models.CharField(max_length=400, blank=True)
-    
-    internal_link = models.CharField(max_length=400, blank=True)
-    external_link = models.CharField(max_length=400, blank=True)
-    
-    start_date   = models.DateField(blank=True, null=True)
-    end_date = models.DateField(blank=True, null=True)
-    expired = models.BooleanField()
-    
-    priority = models.IntegerField(null=True)
-    used = models.CharField(max_length=20, null=True)
-    
-    filled_by_us= models.CharField(max_length=20, blank=True)
-    region  = models.ForeignKey(region, on_delete=models.CASCADE, related_name='courses')
-    
-def __str__(self):  
-    return self.short_name
-
 
 
 

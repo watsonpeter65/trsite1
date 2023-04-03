@@ -18,23 +18,53 @@ h5 {
 	color:darkred;
 }
 
+#e8dddc
 
 
 .cardy1, .cardy1-s_name1, .cardy1-l_name1, .cardy1-text1 {
-background-color: whitesmoke;
+background-color: pink;
 font-family: Arial, sans-serif;
 font-size: 12px;
 color: black;
 text-align: center;
 width: 98%;
+border: 3px solid black;
 }
+
+
 .cardy1-s_name1 {font-size: 18px;font-weight: bold;}
 .cardy1-l_name1 {font-weight: bold;}
-.cardy1-text1 {font-weight: normal;background-color: whitesmoke;}
+.cardy1-text1 {font-weight: normal}
+
+.cardy1-icon1{background-color: #e8dddc;
+            text-align:center; 
+            }
+
+/*   =======        ===========*/
+/*   =======        ===========*/
 
 
-/*   =======whitesmoke ===========*/
+.cardy2, .cardy2-s_name1, .cardy2-l_name1, .cardy2-text1 ,.cardy2-icon1{
+background-color: #f29c96;
+font-family: Arial, sans-serif;
+font-size: 12px;
+color: black;
+text-align: center;
+width: 98%;
+border: 3px solid black;
+}
 
+
+.cardy2-s_name1 {font-size: 18px;font-weight: bold;}
+.cardy2-l_name1 {font-weight: bold;}
+.cardy2-text1 {font-weight: normal}
+
+.cardy2-icon1{background-color: ##f29c96;
+            text-align:center; 
+            }
+
+/*   =======        ===========*/
+/*   =======        ===========*/
 
 
 /*
@@ -50,7 +80,7 @@ hr{ text-align:center; }
 }
 
 
-/*lightgrey*/
+
 
 .adcard1{
   background-color: darkgrey;
