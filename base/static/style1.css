@@ -18,6 +18,33 @@ h5 {
 	color:darkred;
 }
 
+.coursicon1, .courscard1, .coursshrt1, .courslong1 , .courstxt11, .courstxt21{
+background-color: #e8dddc;
+font-family: Arial, sans-serif;
+font-size: 12px;
+color: black;
+text-align: center;
+width: 98%;
+}
+
+.coursdate1{
+background-color: #fcbbb6;
+font-family: Arial, sans-serif;
+font-size: 18px;
+color: black;
+text-align: center;
+}
+
+.coursshrt1 {font-size: 18px;font-weight: bold;}
+.courslong1 {font-weight: bold;}
+.courstxt11 {font-weight: normal}
+.courstxt21 {font-weight: normal}
+
+.coursicon1{background-color: #e8dddc;
+            text-align:center; 
+            }
+
+
 
 
 
@@ -67,12 +94,12 @@ width: 98%;
   border: 1px solid black;
 }
 */
-/*
+
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 dddd}
-*/
+
 
 
 hr{ text-align:center; }

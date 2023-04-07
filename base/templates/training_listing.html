@@ -3,20 +3,86 @@
 
 {% block content %}
 
-<h1> training_listing  HTML  listing page {{ MEDIA_URL }} </h1>
+<body>
+
+<h3>Courses Available </h3>
+
+<!-- Your HTML template -->
+<div class="row">
+  <div class="col-sm-6">
+      {% for item in course_list  %}
+        {% if not forloop.counter|divisibleby:2 %}
+        <table width="100%" border="3">
+        <tr><td rowspan="2">  
+             <img class="coursicon1" src="{{ MEDIA_URL }}{{ item.prov_unique_idx.icon_file }}">
+          </td><td class="coursdate1"width="60%" >Starting on {{ item.start_date|date:"j, F, Y" }} </td></tr>
+          <tr><td  class="coursdate1">Ending on  {{ item.end_date|date:"j, F, Y" }} </td></tr>
+
+          <tr><td class="coursshrt1" colspan="2"> short name {{ item.short_name }} </td></tr>
+          <tr><td class="courslong1" colspan="2">{{ item.long_name }} </td></tr>
+          <tr><td class="courstxt11" colspan="2"> topic_text1 {{ item.topic_text1 }}</td></tr>
+          <tr><td class="courstxt21" colspan="2"> topic_text1 {{ item.topic_text2 }}</td></tr>
+        </table>  
+
+        <!-- <a href="courseenquire.html#section2">Go to Section 2 on Another Page</a> -->
+        <a href="{% url 'courseenquire' section_id=item.course_unique_idx %}">Go to {{ item.short_name }}</a>
 
 
- <img src="{{ MEDIA_URL }}retrotraffic.jpg" alt="Retro Traffic  sssss Picture">
- <br>
- <img src="{{ MEDIA_URL }}roadworksolutions.jpg" alt="Roadworks  Traffic  sssss Picture">
- <br>
- <img src="{{ MEDIA_URL }}lack.jpg" alt="Roadworks  Traffic  sssss Picture">
- <br>
- <img src="{{ MEDIA_URL }}evoloution.jpg" alt="Roadworks  Traffic  sssss Picture">
+<hr width="80%" align="center">
 
+        {% endif %}
+      {% endfor %}
+  </div>
+  <div class="col-sm-6">
+      {% for item in course_list  %}
+        {% if  forloop.counter|divisibleby:2 %}
+
+        <table width="100%" border="3">
+        <tr><td rowspan="2">  
+             <img class="coursicon1" src="{{ MEDIA_URL }}{{ item.prov_unique_idx.icon_file }}">
+          </td><td class="coursdate1"width="60%" >Starting on {{ item.start_date|date:"j, F, Y" }} </td></tr>
+          <tr><td  class="coursdate1">Ending on  {{ item.end_date|date:"j, F, Y" }} </td></tr>
+
+          <tr><td class="coursshrt1" colspan="2"> short name {{ item.short_name }} </td></tr>
+          <tr><td class="courslong1" colspan="2">{{ item.long_name }} </td></tr>
+          <tr><td class="courstxt11" colspan="2"> topic_text1 {{ item.topic_text1 }}</td>
+          </tr></table>  
+
+<hr width="80%" align="center">
+
+
+
+
+        {% endif %}
+      {% endfor %}
+  </div>
+</div>
+
+
+
+
+
+<style>
+.homepage-wrapper {display: flex;flex-wrap: wrap;}
+.courseleft   {width: 50%;margin-top: 5px;text-align: center;}
+.courseright  {width: 50%;margin-top: 5px;}
+
+/* Responsive styles */
+@media (max-width: 768px) {.homepage-wrapper {flex-direction: column;}
+.courseleft   {width: 100%;margin-top: 5px;}
+.courseright  {width: 100%;margin-top: 5px;}
+
+.scrolling-list {height: auto;max-height: 300px;}
+</style>
 
 {% endblock %}
-	
 
 
 
+
+
+
+<!--         <tr><td width="40%">Peter</td><td width="60%">Watson</td></tr>        
+        <tr><td>&nbsp</td><td>Watson</td></tr>        
+        <tr><td>&nbsp</td><td>Watson</td></tr>        
+ -->

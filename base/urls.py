@@ -9,6 +9,10 @@ urlpatterns = [
     path('testy', views.testy, name='testy'),    
     path('training_listing', views.training_listing, name='training_listing'),            
     path('jobs_browse', views.jobs_browse, name='jobs_browse'),     
+   # path('courseenquire', views.courseenquire, name='courseenquire'),     
+    path('courseenquire/<str:section_id>/', views.courseenquire, name='courseenquire'),
+
+
 ]
 
 

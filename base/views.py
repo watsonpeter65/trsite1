@@ -4,9 +4,57 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from .models 	 import provider,prov_addresses,job,shifts,state,courses,region,adverts,editor
 from django.conf import settings
+from django.views.generic import TemplateView	
 import random
 
+from django.core.mail import EmailMessage
+from .forms import jobseekerform
+
 # Create your views here.
+
+
+from .forms import jobseekerform
+from .models import courses, provider
+
+
+from django.core.mail import EmailMessage
+
+
+
+def courseenquire(request, section_id):
+    form = jobseekerform()
+    courses_queryset = courses.objects.filter(course_unique_idx=section_id)
+    provider_queryset = provider.objects.filter(prov_unique_idx=section_id)
+    context = {
+        'form': form,
+        'courses': courses_queryset,
+        'provider': provider_queryset,
+    }
+    
+    if request.method == 'POST':
+        form = jobseekerform(request.POST)
+        if form.is_valid():
+            # Send email
+            subject = 'New personal details form submission'
+            message = 'Name: {}\nEmail: {}\nPhone number: {}'.format(
+                form.cleaned_data['name'],
+                form.cleaned_data['email'],
+                form.cleaned_data['phone_number']
+            )
+            
+            email = EmailMessage(
+                subject=subject,
+                body=message,
+                from_email='sender@example.com',
+                to=['watsonpeter65@gmail.com'],
+                cc=['peter.watson.avocado@gmail.com'],
+            )
+            email.send()
+
+    return render(request, 'courseenquire.html', context)
+
+
+
 
 def index(request):
 		# Define the variables to access the model objects
@@ -71,85 +119,6 @@ def index(request):
 
 		return render(request, 'index.html', {'left_list': left_list, 'shifts_list': shifts_list})
 
-def index_old(request):
-
-
-		# Define the variables to access the model objects
-		job_objects = job.objects
-		adverts_objects = adverts.objects
-		editor_objects = editor.objects
-		courses_objects = courses.objects
-
-		# Update the used attribute for all the model objects
-		job_objects.all().update(used=0)
-		adverts_objects.all().update(used=0)
-		editor_objects.all().update(used=0)
-		courses_objects.all().update(used=0)
-    
-
-#  Shifts 
-		shifts_one  = shifts.objects.filter(priority=1)
-		shifts_two  = shifts.objects.filter(priority=0)
-		shifts_two_list = list(shifts_two)
-		random.shuffle(shifts_two_list)
-		shifts_list  = list(shifts_one) + shifts_two_list
-
-#   end of shifts
-
-
-#  start main part of home page
-
-
-
-		left_list  = job.objects.filter(priority=1)	
-		left_list  = list(left_list) + list(courses.objects.filter(priority=1)	)
-		left_list  = list(left_list) + list(job.objects.filter(priority=2))
-		left_list  = list(left_list) + list(courses.objects.filter(priority=2))
-
-
-		#  job randomiser
-		job_list = list(job.objects.filter(priority=0, used=1))
-		random_job = random.choice(job_list)
-		random_job.used = 1
-		random_job.save()
-		left_list.append(random_job)
-
-		#  course randomiser
-		courses = list(course.objects.filter(priority=0, used=1))
-		random_courses = random.choice(courses)
-		random_courses.used = 1
-		random_courses.save()
-		left_list.append(random_courses)
-
-
-
-		#  job randomiser
-		job_list = list(job.objects.filter(priority=0, used=1))
-		random_job = random.choice(job_list)
-		random_job.used = 1
-		random_job.save()
-		left_list.append(random_job)
-	
-		#  course randomiser
-		courses = list(course.objects.filter(priority=0, used=1))
-		random_course = random.choice(courses)
-		random_course.used = 1
-		random_course.save()
-		left_list.append(random_course)
-
-		#  job randomiser
-		job_list = list(job.objects.filter(priority=0, used=1))
-		random_job = random.choice(job_list)
-		random_job.used = 1
-		random_job.save()
-		left_list.append(random_job)
-
-
-
-
-		return render(request, 'index.html', {'left_list': left_list, 'shifts_list': shifts_list})
-
-
 
 
 def testy(request):
@@ -157,10 +126,12 @@ def testy(request):
 
 
 def training_listing(request):
-	context = {'MEDIA_URL': settings.MEDIA_URL}
+	# context = {'MEDIA_URL': settings.MEDIA_URL}
 
-	return render (request, 'training_listing.html',context) 
+	course_list = courses.objects.order_by('start_date')
 
+
+	return render (request, 'training_listing.html',{'course_list': course_list})
 
 
 
