@@ -1,7 +1,14 @@
-<nav class="navbar  navbar-expand-lg navbar-dark bg-dark">  
-
+<!-- <nav class="navbar  navbar-expand-lg custom-navbar">   -->
+  <nav class="navbar  navbar-expand-lg custom-navbar">  
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'index' %}">HOME </a>
+   
+
+    <!-- <a class="navbar-brand" href="{% url 'index' %}">HOME </a> -->
+
+  <a class="navbar-brand" href="{% url 'index' %}">
+      <img src="{{ MEDIA_URL }}/tclogo3.jpg">
+  </a>
+
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -11,55 +18,57 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        
-      
-        
 
-        <li class="nav-item">
-          <button type="button" class="btn btn-outline-primary">
-          <a class="nav-link" href="{% url 'jobs_browse' %}">Jobs</a>
+        <li>
+          <button type="button" class="btn btn-outline-mine">
+          <a class="nav-link-mine" href="{% url 'jobs_browse' %}">Jobs</a>
           </button>
         </li>
 
 
-
-        <li class="nav-item">
-          <button type="button" class="btn btn-outline-primary">
-          <a class="nav-link" href="{% url 'training_listing' %}">Training</a>
+        <li>
+          <button type="button" class="btn btn-outline-mine">
+          <a class="nav-link-mine" href="{% url 'training_listing' %}">Training</a>
           </button>
         </li>
 
-        <li class="nav-item">
-          <button type="button" class="btn btn-outline-primary">
-          <a class="nav-link" href="{% url 'forums_home' %}">Forums</a>
+        <li>
+          <button type="button" class="btn btn-outline-mine">
+          <a class="nav-link-mine" href="{% url 'forums_home' %}">Forums</a>
           </button>
         </li>
 
-        <li class="nav-item">
-          <button type="button" class="btn btn-outline-primary">
-          <a class="nav-link" href="{% url 'training_listing' %}">Market Place</a>
+        <li>
+          <button type="button" class="btn btn-outline-mine">
+          <a class="nav-link-mine" href="{% url 'training_listing' %}">Market Place</a>
           </button>
         </li>
 
       {% if user.is_authenticated %}
 
-        <li class="nav-item">
+        <li>
+          <button type="button" class="btn btn-outline-mine">
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </button>
         </li>
       {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'register_user' %}">Register</a>
+          <button type="button" class="btn btn-outline-mine">
+          <a class="nav-link-mine" href="{% url 'register_user' %}">Register</a>
+          </button>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        <li>
+          <button type="button" class="btn btn-outline-mine">
+          <a class="nav-link-mine" href="{% url 'login' %}">Login</a>
+          </button>
         </li>
       {% endif %}
 
       
 
 
-        <li class="nav-item dropdown">
+<!--         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
           </a>
@@ -70,12 +79,17 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
+ -->
+
+        
       </ul>
 
-      <form class="d-flex">
+<!--       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+ -->
+      
     </div>
   </div>
 </nav>

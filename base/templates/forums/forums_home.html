@@ -6,13 +6,13 @@
 
 <h2>User forums</h2>
 
-<p> ispo facto delerium  ispo facto delerium  ispo facto delerium  ispo facto delerium </p>
+<p> this is under developemnt  so it looks like shit </p>
  
 
-<h3> I testing </h3>
+<h2> I testing </h2>
 
 {% for group in groups %}
-    <h1>forum_groups {{ group.display_order }} {{ group.group_name }}</h1>
+    <h3>{{ group.group_name }}</h3>
 
     {% for topic in group.forum_topics.all %}
         {% if topic.forum_posts.count > 0 %}

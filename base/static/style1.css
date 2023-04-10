@@ -18,6 +18,21 @@ h5 {
 	color:darkred;
 }
 
+
+.custom-navbar {
+  background-color: #81452a; /* orange background */
+}
+.btn-outline-mine {
+  color: gold;
+  border-color: gold;
+}
+.nav-link-mine
+{
+  color: gold;
+
+}
+
+
 /* Style the button that toggles the visibility of the list  #eee */
 .collapsible {
     background-color: orange;

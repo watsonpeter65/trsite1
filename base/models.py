@@ -234,7 +234,7 @@ def __str__(self):
 #   the forums models
 #   --------------------------------------   
 
-from django.db import models
+
 
 class forum_groups(models.Model):
     group_id    = models.BigAutoField(primary_key=True)
