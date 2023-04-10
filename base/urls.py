@@ -11,9 +11,11 @@ urlpatterns = [
     path('jobs_browse', views.jobs_browse, name='jobs_browse'),     
    # path('courseenquire', views.courseenquire, name='courseenquire'),     
     path('courseenquire/<str:section_id>/', views.courseenquire, name='courseenquire'),
+    path('jobsenquire/<str:section_id>/', views.jobsenquire, name='jobsenquire'),
 
+    path('forums/forums_home', views.forums_home, name='forums_home'),
 
-]
+] 
 
 
 if settings.DEBUG:

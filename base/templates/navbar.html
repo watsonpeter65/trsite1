@@ -16,8 +16,8 @@
         
 
         <li class="nav-item">
-          <button type="button" class="btn btn-primary">
-          <a class="nav-link" href="{% url 'jobs_browse' %}">jobs_browse </a>
+          <button type="button" class="btn btn-outline-primary">
+          <a class="nav-link" href="{% url 'jobs_browse' %}">Jobs</a>
           </button>
         </li>
 
@@ -25,10 +25,21 @@
 
         <li class="nav-item">
           <button type="button" class="btn btn-outline-primary">
-          <a class="nav-link" href="{% url 'training_listing' %}">Search training_listing </a>
+          <a class="nav-link" href="{% url 'training_listing' %}">Training</a>
           </button>
         </li>
 
+        <li class="nav-item">
+          <button type="button" class="btn btn-outline-primary">
+          <a class="nav-link" href="{% url 'forums_home' %}">Forums</a>
+          </button>
+        </li>
+
+        <li class="nav-item">
+          <button type="button" class="btn btn-outline-primary">
+          <a class="nav-link" href="{% url 'training_listing' %}">Market Place</a>
+          </button>
+        </li>
 
       {% if user.is_authenticated %}
 

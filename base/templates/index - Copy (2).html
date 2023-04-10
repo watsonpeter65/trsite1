@@ -10,12 +10,16 @@
 
         {% for item in left_list %} 
 
+
+            
+
         {% if  item.adformat  == 1 %}
+            <p>format 11 loop {{ forloop.counter }} type {{ item.topic_type }}   </p>
             {% if forloop.counter|divisibleby:2 %}
                 <table width="100%">
                   <tr><td class="cardy1-icon1">
-                     <img src="{{ MEDIA_URL }}\work.jpg"  height="70">
-                     <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.icon_file }}">
+                     <img src="{{ MEDIA_URL }}\work.jpg" style="display: block; margin: auto;">
+                     <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.banner_file }}"style="display: block; margin: auto;">
                   </td></tr>
                   <tr><td class="cardy1-s_name1" >{{ item.short_name }} </td></tr>
                   <tr><td class="cardy1-l_name1" >{{ item.long_name }} </td></tr>
@@ -26,7 +30,7 @@
                 <table width="100%">
                   <tr><td class="cardy2-icon1">
                      <img src="{{ MEDIA_URL }}\work.jpg" height="70">
-                     <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.icon_file }}">
+                     <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.banner_file }}">
                   </td></tr>
                   <tr><td class="cardy2-s_name1" >{{ item.short_name }} </td></tr>
                   <tr><td class="cardy2-l_name1" >{{ item.long_name }} </td></tr>
@@ -35,14 +39,15 @@
             {% endif %}
 
 {% elif  item.adformat  == 2 %}
+            <p>format 12  loop {{ forloop.counter }} type {{ item.topic_type }} </p>
+    
             {% if forloop.counter|divisibleby:2 %}
                 <table width="100%">
                     <tr><td class="cardy1-s_name1" >{{ item.short_name }} </td></tr>
                     <tr><td class="cardy1-l_name1" >{{ item.long_name }} </td></tr>
                     <tr><td class="cardy1-text1" > topic_text1 {{ item.topic_text1 }} </td></tr>
                     <tr><td class="cardy1-icon1">
-                     <img src="{{ MEDIA_URL }}\study.jpg"  height="70">
-                     <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.icon_file }}">
+                        <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.banner_file }}"style="display: block; margin:  auto;">
                     </td></tr>
                 </table>  
             {% else %}
@@ -51,14 +56,15 @@
                     <tr><td class="cardy2-l_name1" >{{ item.long_name }} </td></tr>
                     <tr><td class="cardy2-text1" > topic_text1 {{ item.topic_text1 }} </td></tr>
                     <tr><td class="cardy2-icon1">
-                     <img src="{{ MEDIA_URL }}\study.jpg"  height="70">
-                     <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.icon_file }}">
+                        <img src="{{ MEDIA_URL }}{{ item.prov_unique_idx.banner_file }}"style="display: block; margin:  auto;">
                     </td></tr>
                 </table>  
         {% endif %}
     
 
 {% elif  item.adformat  == 3 %}
+            <p>format 13  loop {{ forloop.counter }} type {{ item.topic_type }} </p>
+
            {% if forloop.counter|divisibleby:2 %}
        
                 <table width="100%">
@@ -82,6 +88,8 @@
 
 
 {% elif  item.adformat  == 4 %}
+        <p>format 14  loop {{ forloop.counter }} type {{ item.topic_type }} </p>
+
         {% if forloop.counter|divisibleby:2 %}
             <table>
             <tr><td class="cardy1-icon1">
@@ -104,6 +112,7 @@
         {% endif %}
 
 {% elif  item.adformat  == 5 %}
+        <p>format 15  loop {{ forloop.counter }} type {{ item.topic_type }} </p>
         {% if forloop.counter|divisibleby:2 %}
             <table width="100%">
             <tr><td class="cardy1-s_name1" >{{ item.short_name }} </td></tr>

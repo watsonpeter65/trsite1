@@ -1,0 +1,67 @@
+<!-- forums_home.html -->
+{% extends '../base.html' %}
+
+{% block content %}
+<body>
+
+<h2>User forums</h2>
+
+<p> ispo facto delerium  ispo facto delerium  ispo facto delerium  ispo facto delerium </p>
+ 
+
+<h3> I testing </h3>
+
+{% for group in groups %}
+    <h1>forum_groups {{ group.display_order }} {{ group.group_name }}</h1>
+
+    {% for topic in group.forum_topics.all %}
+        {% if topic.forum_posts.count > 0 %}
+            <button class="collapsible">{{ topic.forum_header }}</button>
+            <div class="content">
+                <ul>
+                    {% for post in topic.forum_posts.all|dictsort:'display_order' %}
+                        <li>{{ post.post_body }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+
+
+<style>
+.homepage-wrapper {display: flex;flex-wrap: wrap;}
+.left-column   {width: 50%;margin-top: 5px;text-align: center;}
+.right-column  {width: 50%;margin-top: 5px;}
+
+/* Responsive styles */
+@media (max-width: 768px) {.homepage-wrapper {flex-direction: column;}
+.left-column   {width: 100%;margin-top: 5px;}
+.right-column  {width: 100%;margin-top: 5px;}
+
+.scrolling-list {height: auto;max-height: 300px;}
+</style>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+
+</body>
+
+
+{% endblock %}

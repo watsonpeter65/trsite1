@@ -2,7 +2,7 @@ from django.db import models
     # Create your models here.
     # dont forget to update admin py
     
-
+    
     
 class state(models.Model):  
     state_id = models.AutoField(primary_key=True)
@@ -10,7 +10,7 @@ class state(models.Model):
     
 def __str__(self):  
     return self. state_name
-    
+     
 class region(models.Model): 
     region_id = models.AutoField(primary_key=True)
     state_id = models.ForeignKey(state, on_delete=models.CASCADE, related_name='region', to_field='state_id')
@@ -230,7 +230,45 @@ class editor(models.Model):
 def __str__(self):  
     return self.short_name
     
-    
+#   --------------------------------------   
+#   the forums models
+#   --------------------------------------   
+
+from django.db import models
+
+class forum_groups(models.Model):
+    group_id    = models.BigAutoField(primary_key=True)
+    short_name  = models.CharField(max_length=50)
+    group_name  = models.CharField(max_length=50)
+    display_order    = models.IntegerField(default=1)
+    def __str__(self):
+        return self.group_name
+
+class forum_topics(models.Model):
+
+    topic_id    = models.BigAutoField(primary_key=True)
+    group   = models.ForeignKey(forum_groups, on_delete=models.CASCADE, related_name='forum_topics')
+    display_order   = models.IntegerField(default=1)
+    short_name  = models.CharField(max_length=50)
+    forum_header    = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.short_name
+
+class forum_posts(models.Model):
+
+    post_id = models.BigAutoField(primary_key=True)
+    topic   = models.ForeignKey(forum_topics, on_delete=models.CASCADE, related_name='forum_posts')
+    post_head   = models.CharField(max_length=50)
+    post_body   = models.CharField(max_length=50)
+    post_by = models.CharField(max_length=50)
+    anonymous   = models.BooleanField(default=0)
+    post_date   = models.DateTimeField(auto_now_add=True) # modified field
+    post_hide   = models.BooleanField(default=0)
+    post_approved   = models.BooleanField(default=0)
+    display_order    = models.IntegerField(default=1)
 
 
+    def __str__(self):
+        return self.post_head
 

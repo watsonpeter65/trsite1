@@ -2,72 +2,28 @@ from django.shortcuts import render
 from django.db import connection
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
-from .models 	 import provider,prov_addresses,job,shifts,state,courses,region,adverts,editor,forum_groups
+from .models 	 import provider,prov_addresses,job,shifts,state,courses,region,adverts,editor
 from django.conf import settings
 from django.views.generic import TemplateView	
 import random
- 
+
 from django.core.mail import EmailMessage
 from .forms import jobseekerform
 
+# Create your views here.
 
-from .forms import jobseekerform, courseseekerform
+
+from .forms import jobseekerform
+from .models import courses, provider
+
+
 from django.core.mail import EmailMessage
-
-
-	
-def forums_home(request):
-
-    groups = forum_groups.objects.order_by('display_order')
-    context = {'groups': groups}
-    return render(request, 'forums/forums_home.html', context)
-
-
-
-
-def jobsenquire(request, section_id):
-    form = jobseekerform()
-    jobs_queryset  	  = job.objects.filter(job_unique_idx=section_id)
-    provider_queryset = provider.objects.filter(prov_unique_idx=section_id)
-    context = {
-        'form': form,
-        'jobs': jobs_queryset,
-        'provider': provider_queryset,
-    }
-    
-    if request.method == 'POST':
-        form = jobseekerform(request.POST)
-        if form.is_valid():
-            # Send email
-            jobs = jobs_queryset.first()
-            subject = 'Hi,   I am interested in applying for this position'
-            message = 'I found this position on the TC Central Website My Details are \nName: {}\nEmail: {}\nPhone number: {}\nCourse Short Name: {}\nCourse Long Name: {} \nCourse start date: {}\n{}\n {}'.format(
-                form.cleaned_data['name'],
-                form.cleaned_data['email'],
-                form.cleaned_data['phone_number'],
-                jobs.short_name,
-                jobs.long_name,
-                jobs.start_date,
-
-                'were trying to attach a cv \nPlease contact me with more information \nThanking you',
-                form.cleaned_data['name'],
-            )         
-            email = EmailMessage(
-                subject=subject,
-                body=message,
-                from_email='sender@example.com',
-                to=['watsonpeter65@gmail.com'],
-                cc=['peter.watson.avocado@gmail.com'],
-            )
-            email.send()
-
-    return render(request, 'jobsenquire.html', context)
 
 
 
 def courseenquire(request, section_id):
-    form = courseseekerform()
-    courses_queryset  = courses.objects.filter(course_unique_idx=section_id)
+    form = jobseekerform()
+    courses_queryset = courses.objects.filter(course_unique_idx=section_id)
     provider_queryset = provider.objects.filter(prov_unique_idx=section_id)
     context = {
         'form': form,
@@ -76,7 +32,7 @@ def courseenquire(request, section_id):
     }
     
     if request.method == 'POST':
-        form = courseseekerform(request.POST)
+        form = jobseekerform(request.POST)
         if form.is_valid():
             # Send email
             course = courses_queryset.first()
@@ -177,6 +133,8 @@ def training_listing(request):
 	# context = {'MEDIA_URL': settings.MEDIA_URL}
 
 	course_list = courses.objects.order_by('start_date')
+
+
 	return render (request, 'training_listing.html',{'course_list': course_list})
 
 
@@ -184,17 +142,6 @@ def training_listing(request):
 
 
 def jobs_browse(request):
-
-		jobs_list = job.objects.filter(expired=0).order_by('start_date')
-
-		return render(request, 'jobs_browse.html', 
-			{'jobs_list': jobs_list,}
-			)
-
-
-
-
-def jobs_browse_old(request):
 	if request.method == 'GET':
 		# Get all the states from the database
 		states = state.objects.all()
@@ -236,6 +183,37 @@ def jobs_browse_old(request):
 	# 	return render(request, 'index.html', {'shifts_list': shifts_list})
 
 	# 	# 'selected_state': selected_state,  {'shifts_one': shifts_one},
+
+
+
+def index_back(request):
+		
+		shifts_one   = shifts.objects.filter(filled_by_us=1)
+		shifts_two   = shifts.objects.filter(filled_by_us=0)
+		shifts_list  = list(shifts_one) + list(shifts_two)
+
+
+
+		#adverts_one   = adverts.objects.filter(priority=1)
+		adverts_one   = adverts.objects.filter(priority=1)	
+		adverts_one_with_providers = []
+		for advert in adverts_one:
+			provider = advert.prov_unique_idx
+			adverts_one_with_providers.append({'advert': advert, 'provider': provider})
+
+		adverts_two   = adverts.objects.filter(priority=0)			
+		adverts_two_with_providers = []
+
+		for advert in adverts_two:
+			provider = advert.prov_unique_idx
+			adverts_two_with_providers.append({'advert': advert, 'provider': provider})
+
+		ads_with_prov = 	list(adverts_one_with_providers) + list(adverts_two_with_providers)
+
+
+
+		return render(request, 'index.html', {'ads_with_prov': ads_with_prov ,'shifts_list': shifts_list})
+
 
 
 

@@ -1,46 +1,83 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<body>
 
 
-<h2>jobs browse  html </h2>
+<h3>Jobs Advertising</h3>
 
-<form method="POST" {% if jobs_list %}style="display: none;"{% endif %}>
-  {% csrf_token %}
-  <label for="state">Select a state:</label>
-  <select name="state" id="state">
-    {% for state in states %}
-      <option value="{{ state.state_id }}">{{ state.state_name }}</option>
+<div class="row">   
+  <div class="left-column" >
+    {% for item in jobs_list  %}
+      {% if not forloop.counter|divisibleby:2 %}    
+
+        <table width="100%" >
+        <tr><td rowspan="2">  
+             <img class="coursicon1" src="{{ MEDIA_URL }}{{ item.prov_unique_idx.icon_file }}">
+          </td><td class="coursdate1"width="60%" >Starting on {{ item.start_date|date:"j, F, Y" }} </td></tr>
+          <tr><td  class="coursdate1">Ending on  {{ item.end_date|date:"j, F, Y" }} </td></tr>
+
+          <tr><td class="coursshrt1" colspan="2"> short name {{ item.short_name }} </td></tr>
+          <tr><td class="courslong1" colspan="2">{{ item.long_name }} </td></tr>
+          <tr><td class="courstxt11" colspan="2"> topic_text1 {{ item.topic_text1 }}</td></tr>
+          <tr><td class="courstxt21" colspan="2"> topic_text1 {{ item.topic_text2 }}</td></tr>
+          <tr><td colspan="2" class="courlink1" >
+
+          <a class="courlink1"  href="{% url 'jobsenquire' section_id=item.job_unique_idx %}"> Click More information on Job {{ item.short_name }}</a>
+
+        </td></tr>
+        </table>  
+
+        <hr width="80%" align="center">
+      {% endif %}
     {% endfor %}
 
-  </select>
-  <input type="submit" value="Submit">
-</form>
+  </div> 
+
+
+  <div class="right-column" >
+    {% for item in jobs_list  %}
+      {% if forloop.counter|divisibleby:2 %}    
+
+        <table width="100%" >
+        <tr><td rowspan="2">  
+             <img class="coursicon1" src="{{ MEDIA_URL }}{{ item.prov_unique_idx.icon_file }}">
+          </td><td class="coursdate1"width="60%" >Starting on {{ item.start_date|date:"j, F, Y" }} </td></tr>
+          <tr><td  class="coursdate1">Ending on  {{ item.end_date|date:"j, F, Y" }} </td></tr>
+
+          <tr><td class="coursshrt1" colspan="2"> short name {{ item.short_name }} </td></tr>
+          <tr><td class="courslong1" colspan="2">{{ item.long_name }} </td></tr>
+          <tr><td class="courstxt11" colspan="2"> topic_text1 {{ item.topic_text1 }}</td></tr>
+          <tr><td class="courstxt21" colspan="2"> topic_text1 {{ item.topic_text2 }}</td></tr>
+          <tr><td colspan="2" class="courlink1" >
+          <a class="courlink1"  href="{% url 'courseenquire' section_id=item.job_unique_idx %}"> Click More information on {{ item.short_name }}</a>
+        </td></tr>
+        </table>  
+
+        <hr width="80%" align="center">
+      {% endif %}
+    {% endfor %}
+
+  </div> 
+
+</div>
 
 
 
+<style>
+.homepage-wrapper {display: flex;flex-wrap: wrap;}
+.left-column   {width: 50%;margin-top: 5px;text-align: center;}
+.right-column  {width: 50%;margin-top: 5px;}
+
+/* Responsive styles */
+@media (max-width: 768px) {.homepage-wrapper {flex-direction: column;}
+.left-column   {width: 100%;margin-top: 5px;}
+.right-column  {width: 100%;margin-top: 5px;}
+
+.scrolling-list {height: auto;max-height: 300px;}
+</style>
 
 
-<form method="POST" {% if not regions %}style="display: none;"{% endif %}>
-  {% csrf_token %}
-  {% if regions %}
-    <label for="region">Select a region:</label>
-    <select name="region" id="region">
-      {% for region in regions %}
-        <option value="{{ region.region_id }}">{{ region.region_name }}</option>
-      {% endfor %}
-    </select>
-    <input type="hidden" name="state_hidden" value="{{ selected_state }}">
-    <input type="submit" value="Submit">
-  {% endif %}
-</form>
-
-<h2>Items here</h2>
-<ul>
-   {% for job in jobs_list %}
-    <li>{{ job.job_title }}</li>
-  {% endfor %}
-</ul>
 
 {% endblock %}
 
